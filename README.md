@@ -1,2 +1,2 @@
-# suplatter
+# supplatter
 Support, planning and time tracker
