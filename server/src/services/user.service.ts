@@ -1,16 +1,12 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UserService {
-    async create() {
-    }
+    async create() {}
 
-    async getAll() {
-    }
+    async getAll() {}
 
-    async getOve() {
-    }
+    async getOve() {}
 
-    async delete() {
-    }
+    async delete() {}
 }
