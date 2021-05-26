@@ -3,12 +3,14 @@
 # ------------------------------------------------------
 
 type CreateUserDto {
+  _id: String!
   username: String!
+  email: String!
+  password: String!
 }
 
 type Query {
-  hello: String!
-  users: [CreateUserDto!]!
+  getUsers: [CreateUserDto!]!
 }
 
 type Mutation {
@@ -17,4 +19,6 @@ type Mutation {
 
 input CreateUserInput {
   username: String!
+  email: String!
+  password: String!
 }
