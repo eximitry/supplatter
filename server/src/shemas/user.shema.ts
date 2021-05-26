@@ -1,30 +1,34 @@
+import { Field, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
+
 import { Task } from './task.shema';
-import * as mongoose from 'mongoose';
 
 export type UserDocument = User & Document;
 
+@ObjectType()
 @Schema()
 export class User {
-    _doc: any;
+    @Field(() => String)
+    _id: MongooseSchema.Types.ObjectId;
 
-    @Prop()
-    _id: string;
-
+    @Field(() => String)
     @Prop()
     username: string;
 
+    @Field()
     @Prop()
     email: string;
 
+    @Field()
     @Prop()
     password: string;
 
+    @Field()
     @Prop()
     avatar: string;
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Task' })
+    @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Task' })
     tasks: Task[];
 }
 

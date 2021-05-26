@@ -1,9 +1,10 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { Schema as MongooseSchema } from 'mongoose';
 
 @ObjectType()
 export class CreateUserDto {
-    @Field()
-    readonly _id: string;
+    @Field(() => String, { nullable: true })
+    _id: MongooseSchema.Types.ObjectId;
 
     @Field()
     readonly username: string;

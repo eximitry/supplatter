@@ -1,9 +1,9 @@
-import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { Model, Schema as MongooseSchema } from 'mongoose';
 
 import { User, UserDocument } from '../shemas/user.shema';
-import { CreateUserInput } from '../inputs/user.input';
+import { CreateUserInput, ListPersonInput } from '../inputs/user.input';
 
 @Injectable()
 export class UserService {
@@ -11,21 +11,12 @@ export class UserService {
         @InjectModel(User.name) private usersModel: Model<UserDocument>,
     ) {}
 
-    // async getUsers(): Promise<User[]> {
-    //     return await this.usersModel.find().exec();
-    // }
+    getById(_id: MongooseSchema.Types.ObjectId) {
+        return this.usersModel.findById(_id).exec();
+    }
 
-    async getUsers(): Promise<User[]> {
-        return await this.usersModel.find()
-            .then(users => {
-                return users.map(user => {
-                    return { ...user._doc, _id: user._doc._id.toString() };
-                })
-            })
-            .catch(err => {
-                    throw err
-                }
-            );
+    async getUsers(filters: ListPersonInput): Promise<User[]> {
+        return await this.usersModel.find({ ...filters }).exec();
     }
 
     async createUser(createUserDto: CreateUserInput): Promise<User> {
