@@ -14,10 +14,25 @@ export class CreateUserInput {
 }
 
 @InputType()
-export class ListPersonInput {
+export class ListUserInput {
     @Field(() => String, { nullable: true })
     _id?: MongooseSchema.Types.ObjectId;
 
     @Field(() => String, { nullable: true })
     username?: string;
+}
+
+@InputType()
+export class UpdateUserInput {
+    @Field(() => String, { nullable: true })
+    _id?: MongooseSchema.Types.ObjectId;
+
+    @Field(() => String, { nullable: true })
+    readonly username?: string;
+
+    @Field(() => String, { nullable: true })
+    readonly email?: string;
+
+    @Field(() => String, { nullable: true })
+    readonly password?: string;
 }

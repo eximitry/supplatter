@@ -3,7 +3,7 @@ import { Schema as MongooseSchema } from 'mongoose';
 
 @ObjectType()
 export class CreateUserDto {
-    @Field(() => String, { nullable: true })
+    @Field(() => String)
     _id: MongooseSchema.Types.ObjectId;
 
     @Field()

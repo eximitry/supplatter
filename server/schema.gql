@@ -11,28 +11,37 @@ type User {
 }
 
 type CreateUserDto {
-  _id: String
+  _id: String!
   username: String!
   email: String!
   password: String!
 }
 
 type Query {
-  user(_id: String!): User!
-  getUsers(filters: ListPersonInput): [CreateUserDto!]!
+  getById(_id: String!): User!
+  getAll(filters: ListUserInput): [CreateUserDto!]!
 }
 
-input ListPersonInput {
+input ListUserInput {
   _id: String
   username: String
 }
 
 type Mutation {
-  createUser(input: CreateUserInput!): CreateUserDto!
+  create(input: CreateUserInput!): CreateUserDto!
+  update(input: UpdateUserInput!): User!
+  delete(_id: String!): User!
 }
 
 input CreateUserInput {
   username: String!
   email: String!
   password: String!
+}
+
+input UpdateUserInput {
+  _id: String
+  username: String
+  email: String
+  password: String
 }

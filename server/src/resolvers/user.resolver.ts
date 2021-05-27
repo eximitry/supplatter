@@ -3,7 +3,7 @@ import { Schema as MongooseSchema } from 'mongoose';
 
 import { User } from '../shemas/user.shema';
 import { CreateUserDto } from '../dto/create-user.dto';
-import { CreateUserInput, ListPersonInput } from '../inputs/user.input';
+import { CreateUserInput, ListUserInput, UpdateUserInput } from '../inputs/user.input';
 import { UserService } from '../services/user.service';
 
 @Resolver(() => User)
@@ -11,21 +11,31 @@ export class UserResolver {
     constructor(private usersService: UserService) {}
 
     @Query(() => User)
-    async user(
+    getById(
         @Args('_id', { type: () => String }) _id: MongooseSchema.Types.ObjectId,
     ) {
         return this.usersService.getById(_id);
     }
 
     @Query(() => [CreateUserDto])
-    async getUsers(
-        @Args('filters', { nullable: true }) filters?: ListPersonInput,
-    ) {
-        return this.usersService.getUsers(filters);
+    getAll(@Args('filters', { nullable: true }) filters?: ListUserInput) {
+        return this.usersService.getAll(filters);
     }
 
     @Mutation(() => CreateUserDto)
-    async createUser(@Args('input') input: CreateUserInput) {
-        return this.usersService.createUser(input);
+    create(@Args('input') input: CreateUserInput) {
+        return this.usersService.create(input);
+    }
+
+    @Mutation(() => User)
+    update(@Args('input') payload: UpdateUserInput) {
+        return this.usersService.update(payload);
+    }
+
+    @Mutation(() => User)
+    delete(
+        @Args('_id', { type: () => String }) _id: MongooseSchema.Types.ObjectId,
+    ) {
+        return this.usersService.delete(_id);
     }
 }
