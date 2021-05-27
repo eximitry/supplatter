@@ -1,10 +1,10 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { Schema as MongooseSchema } from 'mongoose';
 
-import { User } from '../shemas/user.shema';
-import { CreateUserDto } from '../dto/create-user.dto';
-import { CreateUserInput, ListUserInput, UpdateUserInput } from '../inputs/user.input';
-import { UserService } from '../services/user.service';
+import { User } from './schemas/user.schema';
+import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserInput, ListUserInput, UpdateUserInput } from './inputs/user.input';
+import { UserService } from './user.service';
 
 @Resolver(() => User)
 export class UserResolver {
