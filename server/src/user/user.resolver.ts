@@ -1,9 +1,11 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Schema as MongooseSchema } from 'mongoose';
 
-import { User } from './schemas/user.schema';
 import { CreateUserDto } from './dto/create-user.dto';
-import { CreateUserInput, ListUserInput, UpdateUserInput } from './inputs/user.input';
+import { CreateUserInput } from './inputs/create-user.input';
+import { ListUserInput } from './inputs/list-user.input';
+import { UpdateUserInput } from './inputs/update-user.input';
+import { User } from './schemas/user.schema';
 import { UserService } from './user.service';
 
 @Resolver(() => User)

@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Schema as MongooseSchema } from 'mongoose';
 
+import { CreateUserInput } from './inputs/create-user.input';
+import { ListUserInput } from './inputs/list-user.input';
 import { User, UserDocument } from './schemas/user.schema';
-import { CreateUserInput, ListUserInput } from './inputs/user.input';
 
 @Injectable()
 export class UserService {
