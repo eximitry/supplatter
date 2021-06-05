@@ -12,8 +12,8 @@ const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <>
             <ThemeProvider theme={defaultTheme}>
-                <NormalizeStyles />
-                <GlobalStyles />
+                <NormalizeStyles/>
+                <GlobalStyles/>
                 <Component {...pageProps} />
             </ThemeProvider>
         </>

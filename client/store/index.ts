@@ -1,11 +1,10 @@
-import {createStore, Store} from 'redux';
-import {createWrapper, Context} from 'next-redux-wrapper';
-import { reducer } from './reducers';
+import { AnyAction, applyMiddleware, createStore } from 'redux';
+import { createWrapper, Context, MakeStore } from 'next-redux-wrapper';
+import { reducer, RootState } from './reducers';
+import thunk, { ThunkDispatch } from 'redux-thunk';
 
-export interface State {
-    tick: string;
-}
+const makeStore: MakeStore<RootState> = (context: Context) => createStore(reducer, applyMiddleware(thunk));
 
-const makeStore = (context: Context) => createStore(reducer);
+export const wrapper = createWrapper<RootState>(makeStore, { debug: true });
 
-export const wrapper = createWrapper<Store<State>>(makeStore, {debug: true});
+export type NextThunkDispatch = ThunkDispatch<RootState, void, AnyAction>

@@ -1,11 +1,9 @@
 import React from 'react';
 
+import MainWrapper from '../layouts/MainWrapper/MainWrapper';
+
 const Index = () => {
-    return (
-        <div>
-            Home page
-        </div>
-    );
+    return <MainWrapper/>;
 };
 
 export default Index;

@@ -1,8 +1,10 @@
-import {combineReducers} from "redux";
-import {HYDRATE} from "next-redux-wrapper";
+import { combineReducers } from "redux";
+import { HYDRATE } from "next-redux-wrapper";
+import { usersReducer } from './usersReducer';
 
-
-const rootReducer = combineReducers({})
+const rootReducer = combineReducers({
+    users: usersReducer
+})
 
 export const reducer = (state, action) => {
     if (action.type === HYDRATE) {
