@@ -1,6 +1,4 @@
-import React from 'react';
-
-import MainWrapper from '../layouts/MainWrapper/MainWrapper';
+import MainWrapper from '../layouts/MainWrapper';
 
 const Index = () => {
     return <MainWrapper/>;
