@@ -5,21 +5,33 @@ import axios from 'axios';
 export const fetchUsers = () => {
     return async (dispatch: Dispatch<UsersAction>) => {
         try {
-            const response = await axios.get('https://reqres.in/api/products')
+            const response = await axios({
+                url: 'http://localhost:5000/graphql',
+                method: 'post',
+                data: {
+                    query: `
+                        query {
+                            getAll {
+                                _id
+                                username
+                                email
+                                password
+                            }
+                        }
+                    `
+                }
+            }).then((result) => {
+                return result.data;
+            });
+
             dispatch({
                 type: UsersActionTypes.FETCH_USERS,
-                payload: response.data
+                payload: response.data.getAll
             });
-            // const { data } = useQuery(GET_ALL_USERS);
-            // console.log(data);
-            // dispatch({
-            //     type: UsersActionTypes.FETCH_USERS,
-            //     payload: data.getAll
-            // });
         } catch (e) {
             dispatch({
                 type: UsersActionTypes.FETCH_USERS_ERROR,
-                payload: 'Произошла ошибка при загрузке пользователей'
+                payload: `Произошла ошибка при загрузке пользователей. ${e}`
             });
         }
     }

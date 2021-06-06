@@ -4,7 +4,6 @@ import Header from '../../components/Header';
 import Table from '../../components/Table';
 
 import { StyledContent, StyledMain, StyledMainWrapper } from './styles';
-import Test from '../../components/Test/Test';
 
 const MainWrapper: FC = () => {
     return (
@@ -14,7 +13,6 @@ const MainWrapper: FC = () => {
                 <Header/>
                 <StyledContent>
                     <Table/>
-                    <Test/>
                 </StyledContent>
             </StyledMain>
         </StyledMainWrapper>
