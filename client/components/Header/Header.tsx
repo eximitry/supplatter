@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyledHeader, StyledHeaderUser, StyledHeaderUserAvatar, StyledHeaderUserName } from './styles';
 
 const Header = () => {
