@@ -1,38 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Schema as MongooseSchema } from 'mongoose';
-
-import { CreateUserInput } from './inputs/create-user.input';
-import { ListUserInput } from './inputs/list-user.input';
+import { CreateUserDto } from './dto/create-user.dto';
 import { User, UserDocument } from './schemas/user.schema';
 
 @Injectable()
 export class UserService {
     constructor(
-        @InjectModel(User.name) private usersModel: Model<UserDocument>,
+        @InjectModel(User.name) private userModel: Model<UserDocument>,
     ) {}
 
-    async getById(_id: MongooseSchema.Types.ObjectId) {
-        return await this.usersModel.findById(_id).exec();
+    async create(dto: CreateUserDto): Promise<User> {
+        const createdUser = new this.userModel(dto);
+        return createdUser.save();
     }
 
-    async getAll(filters: ListUserInput): Promise<User[]> {
-        return await this.usersModel.find({ ...filters }).exec();
+    async getAll(): Promise<User[]> {
+        return await this.userModel.find().exec();
     }
 
-    async create(createUserDto: CreateUserInput): Promise<User> {
-        const createdUser = new this.usersModel(createUserDto);
-
-        return await createdUser.save();
+    async getById(id: MongooseSchema.Types.ObjectId): Promise<User> {
+        return await this.userModel.findById(id).exec();
     }
 
-    async update(payload) {
-        return this.usersModel
-            .findByIdAndUpdate(payload._id, payload, { new: true })
-            .exec();
-    }
+    // async update(payload) {
+    //     return await this.userModel.findByIdAndUpdate(payload);
+    // }
 
-    async delete(_id: MongooseSchema.Types.ObjectId): Promise<User> {
-        return this.usersModel.findByIdAndDelete(_id).exec();
+    async delete(
+        id: MongooseSchema.Types.ObjectId,
+    ): Promise<MongooseSchema.Types.ObjectId> {
+        const user = await this.userModel.findByIdAndDelete(id).exec();
+        return user._id;
     }
 }
