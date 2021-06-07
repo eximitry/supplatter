@@ -6,11 +6,9 @@ import {
     StyledTableTr,
     StyledTableTd
 } from './styles';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 
-const Table = () => {
+const Table = ({ rows }) => {
     const fields = ['username', 'email', 'password'];
-    const { users, error } = useTypedSelector(state => state.users)
 
     return (
         <StyledTable>
@@ -25,7 +23,7 @@ const Table = () => {
             </StyledTableThead>
             <StyledTableTbody>
                 {
-                    users.map(({ username, email, password }, idx) => {
+                    rows.map(({ username, email, password }, idx) => {
                         return (
                             <StyledTableTr key={idx} onClick={() => console.log('click tr')}>
                                 <StyledTableTd data-label={'username'}>{username}</StyledTableTd>
