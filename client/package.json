@@ -16,9 +16,7 @@
         "start": "next start"
     },
     "dependencies": {
-        "@apollo/client": "^3.3.19",
         "axios": "^0.21.1",
-        "graphql": "^15.5.0",
         "next": "10.2.3",
         "next-redux-wrapper": "~6.0.2",
         "react": "17.0.2",

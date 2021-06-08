@@ -7,7 +7,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 const makeStore = (context: Context) => createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
-
 export const wrapper = createWrapper(makeStore, { debug: true });
 
 export type NextThunkDispatch = ThunkDispatch<RootState, void, AnyAction>

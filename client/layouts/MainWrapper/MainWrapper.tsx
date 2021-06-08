@@ -4,10 +4,9 @@ import Header from '../../components/Header';
 import Table from '../../components/Table';
 
 import { StyledContent, StyledMain, StyledMainWrapper } from './styles';
-import axios from 'axios';
-import { CREATE_USER } from '../../gql';
-import { useActions } from '../../hooks/useActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import axios from 'axios';
+import { useActions } from '../../hooks/useActions';
 
 const MainWrapper: FC = () => {
     const [username, setUsername] = useState('');
@@ -20,9 +19,15 @@ const MainWrapper: FC = () => {
     const { fetchUsers } = useActions();
 
     const addToDB = async () => {
-        await axios.post('http://localhost:5000/graphql', {
-           query: CREATE_USER(username, email, password)
-        }).then(() => fetchUsers());
+        try {
+            await axios.post('http://localhost:5000/user', {
+                username,
+                email,
+                password
+            }).then(() => fetchUsers());
+        } catch (e) {
+            console.log(e)
+        }
     };
 
     const testAddFile = (e) => {

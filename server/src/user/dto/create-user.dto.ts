@@ -1,5 +1,3 @@
-import { Schema as MongooseSchema } from 'mongoose';
-
 export class CreateUserDto {
     readonly username: string;
     readonly email: string;

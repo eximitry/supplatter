@@ -1,22 +1,14 @@
-import { Dispatch } from "react";
+import { Dispatch } from 'react';
 import { UsersAction, UsersActionTypes } from '../types/users';
 import axios from 'axios';
-import { GET_ALL_USERS } from '../../gql';
 
 export const fetchUsers = () => {
     return async (dispatch: Dispatch<UsersAction>) => {
         try {
-            const response = await axios.post(
-                'http://localhost:5000/graphql',
-                {
-                    query: GET_ALL_USERS
-                })
-                .then((result) => {
-                    return result.data;
-                });
+            const response = await axios.get('http://localhost:5000/user')
             dispatch({
                 type: UsersActionTypes.FETCH_USERS,
-                payload: response.data.getAll
+                payload: response.data
             });
         } catch (e) {
             dispatch({
