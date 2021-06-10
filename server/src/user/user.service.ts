@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Schema as MongooseSchema } from 'mongoose';
+import { FileService, FileType } from '../file/file.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User, UserDocument } from './schemas/user.schema';
 
@@ -8,11 +9,22 @@ import { User, UserDocument } from './schemas/user.schema';
 export class UserService {
     constructor(
         @InjectModel(User.name) private userModel: Model<UserDocument>,
+        private fileService: FileService,
     ) {}
 
-    async create(dto: CreateUserDto): Promise<User> {
-        const createdUser = new this.userModel(dto);
-        return createdUser.save();
+    async create(dto: CreateUserDto, picture, audio): Promise<User> {
+        const audioPath = this.fileService.createFile(FileType.AUDIO, audio);
+        const picturePath = this.fileService.createFile(
+            FileType.IMAGE,
+            picture,
+        );
+
+        return await this.userModel.create({
+            ...dto,
+            listens: 0,
+            audio: audioPath,
+            picture: picturePath,
+        });
     }
 
     async getAll(): Promise<User[]> {

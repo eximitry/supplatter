@@ -18,9 +18,11 @@ const MainWrapper: FC = () => {
 
     const { fetchUsers } = useActions();
 
+    console.log(users);
+
     const addToDB = async () => {
         try {
-            await axios.post('http://localhost:5000/user', {
+            await axios.post('http://localhost:5000/users', {
                 username,
                 email,
                 password

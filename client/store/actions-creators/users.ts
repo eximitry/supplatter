@@ -5,7 +5,7 @@ import axios from 'axios';
 export const fetchUsers = () => {
     return async (dispatch: Dispatch<UsersAction>) => {
         try {
-            const response = await axios.get('http://localhost:5000/user')
+            const response = await axios.get('http://localhost:5000/users')
             dispatch({
                 type: UsersActionTypes.FETCH_USERS,
                 payload: response.data

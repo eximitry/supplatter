@@ -18,7 +18,10 @@ export class User {
     password: string;
 
     @Prop()
-    avatar: string;
+    picture: string;
+
+    @Prop()
+    audio: string;
 
     // @Prop({type: [{type: MongooseSchema.Types.ObjectId, ref: 'Task'}]})
     // tasks: Task[];
