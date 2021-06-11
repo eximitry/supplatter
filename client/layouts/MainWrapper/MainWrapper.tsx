@@ -9,32 +9,39 @@ import axios from 'axios';
 import { useActions } from '../../hooks/useActions';
 
 const MainWrapper: FC = () => {
+    const { users } = useTypedSelector(state => state.users);
+    console.log(users);
+    const imageInputRef = useRef();
+
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { users } = useTypedSelector(state => state.users);
-    const imageInputRef = useRef();
     const [image, setImage] = useState(null);
 
     const { fetchUsers } = useActions();
 
-    console.log(users);
-
     const addToDB = async () => {
+        const formData = new FormData()
+        formData.append('username', username)
+        formData.append('email', email)
+        formData.append('password', password)
+        formData.append('avatar', image)
+
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        };
+
         try {
-            await axios.post('http://localhost:5000/users', {
-                username,
-                email,
-                password
-            }).then(() => fetchUsers());
+            await axios.post('http://localhost:5000/users', formData, config).then(() => fetchUsers());
         } catch (e) {
             console.log(e)
         }
     };
 
     const testAddFile = (e) => {
-        console.log('add file');
-        console.log(image);
+        setImage(e.target.files[0]);
     };
 
     return (
@@ -43,15 +50,12 @@ const MainWrapper: FC = () => {
             <StyledMain>
                 <Header/>
                 <StyledContent>
-                    <div>
-                        <input type="file" onChange={event => setImage(event.target.files[0])} ref={imageInputRef} />
-                        <button onClick={testAddFile}>Test add file</button>
-                    </div>
-                    <input type="text" value={username} onInput={(e) => setUsername(e.currentTarget.value)} />
-                    <input type="text" value={email} onInput={(e) => setEmail(e.currentTarget.value)} />
-                    <input type="text" value={password} onInput={(e) => setPassword(e.currentTarget.value)} />
+                    <input type="text" value={username} onInput={(e) => setUsername(e.currentTarget.value)}/>
+                    <input type="text" value={email} onInput={(e) => setEmail(e.currentTarget.value)}/>
+                    <input type="text" value={password} onInput={(e) => setPassword(e.currentTarget.value)}/>
+                    <input type="file" onChange={testAddFile} name='picture' accept="image/*" ref={imageInputRef}/>
                     <button onClick={addToDB}>Add to DB</button>
-                    <Table rows={users} />
+                    <Table rows={users}/>
                 </StyledContent>
             </StyledMain>
         </StyledMainWrapper>

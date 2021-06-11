@@ -12,18 +12,16 @@ export class UserService {
         private fileService: FileService,
     ) {}
 
-    async create(dto: CreateUserDto, picture, audio): Promise<User> {
-        const audioPath = this.fileService.createFile(FileType.AUDIO, audio);
-        const picturePath = this.fileService.createFile(
+    async create(dto: CreateUserDto, avatar): Promise<User> {
+        const avatarPath = this.fileService.createFile(
             FileType.IMAGE,
-            picture,
+            avatar,
         );
 
         return await this.userModel.create({
             ...dto,
             listens: 0,
-            audio: audioPath,
-            picture: picturePath,
+            avatar: avatarPath,
         });
     }
 

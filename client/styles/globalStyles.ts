@@ -37,12 +37,12 @@ const GlobalStyles = createGlobalStyle<{ theme: IDefaultTheme }>`
         monospace;
     }
 
-    button {
-        background: transparent;
-        border: none;
-        margin: 0;
-        padding: 0;
-    }
+    //button {
+    //    background: transparent;
+    //    border: none;
+    //    margin: 0;
+    //    padding: 0;
+    //}
 `;
 
 export default GlobalStyles;

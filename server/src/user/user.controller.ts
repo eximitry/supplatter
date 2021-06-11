@@ -20,13 +20,12 @@ export class UserController {
     @Post()
     @UseInterceptors(
         FileFieldsInterceptor([
-            { name: 'picture', maxCount: 1 },
-            { name: 'audio', maxCount: 1 },
+            { name: 'avatar', maxCount: 1 },
         ]),
     )
     create(@UploadedFiles() files, @Body() dto: CreateUserDto) {
-        const { picture, audio } = files;
-        return this.userService.create(dto, picture[0], audio[0]);
+        const { avatar } = files;
+        return this.userService.create(dto, avatar[0]);
     }
 
     @Get()
