@@ -2,7 +2,11 @@ import styled from 'styled-components';
 import { absolute, size, trs } from '../../styles/mixins';
 import { clearListStyles } from '../../styles/placeholders';
 
-export const StyledSidebar = styled.div`
+interface IStyledSidebar {
+    hiddenSidebar: boolean;
+}
+
+export const StyledSidebar = styled.div<IStyledSidebar>`
     ${trs()};
     background-color: var(--color-1--5);
     display: flex;
@@ -30,11 +34,8 @@ export const StyledSidebarListItem = styled.li`
     padding: 5px 20px;
 `;
 
-export const StyledSidebarBurger = styled.button`
+export const StyledSidebarBurger = styled.button<IStyledSidebar>`
     ${absolute('0', null, null, '0')};
     ${size('40px')};
     background: var(--color-1--4);
 `;
-
-
-

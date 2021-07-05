@@ -4,7 +4,7 @@ export const trs = (prop = 'all', duration = '250ms', easing = 'ease-in-out', de
     transition: ${prop} ${duration} ${easing} ${delay};
 `;
 
-export const absolute = (top?, left?, bottom?, right?) => {
+export const absolute = (top?: string | null, left?: string | null, bottom?: string | null, right?: string | null) => {
     let styles = 'position: absolute;';
 
     if (isString(top)) styles += `top: ${top};`;
@@ -15,7 +15,7 @@ export const absolute = (top?, left?, bottom?, right?) => {
     return styles;
 };
 
-export const size = (width?, height?) => {
+export const size = (width?: string, height?: string) => {
     let styles = '';
     height = height ? height : width;
 
