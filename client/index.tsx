@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import MainWrapper from './layouts/MainWrapper/MainWrapper';
+import App from './App';
 
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from './styles/defaultTheme';
@@ -13,7 +13,7 @@ ReactDOM.render(
         <ThemeProvider theme={defaultTheme}>
             <NormalizeStyles/>
             <GlobalStyles/>
-            <MainWrapper/>
+            <App/>
         </ThemeProvider>
     </React.StrictMode>,
     document.getElementById('root'),

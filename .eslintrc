@@ -16,7 +16,7 @@
         "prettier/prettier": [
             "error",
             {
-                "semi": true,
+                "semi": "always",
                 "printWidth": 120,
                 "tabWidth": 4,
                 "singleQuote": true,

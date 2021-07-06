@@ -16,7 +16,7 @@
         /* Specify JSX code generation: 'preserve', 'react-native', 'react' or 'react-jsx'. */,
         "noEmit": true
         /* Do not emit outputs. */,
-        "isolatedModules": true
+        "isolatedModules": false
         /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */,
         "esModuleInterop": true
         /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
