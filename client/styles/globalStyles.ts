@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
-import { IDefaultTheme } from './defaultTheme';
+import { IDefaultTheme } from "./defaultTheme";
 
 const GlobalStyles = createGlobalStyle<{ theme: IDefaultTheme }>`
     html {

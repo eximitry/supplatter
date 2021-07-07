@@ -11,9 +11,9 @@ import GlobalStyles from './styles/globalStyles';
 ReactDOM.render(
     <React.StrictMode>
         <ThemeProvider theme={defaultTheme}>
-            <NormalizeStyles/>
-            <GlobalStyles/>
-            <App/>
+            <NormalizeStyles />
+            <GlobalStyles />
+            <App />
         </ThemeProvider>
     </React.StrictMode>,
     document.getElementById('root'),

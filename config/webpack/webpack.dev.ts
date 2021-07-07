@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+// const webpack = require('webpack');
 // const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
@@ -8,12 +8,13 @@ module.exports = {
         port: 3000,
         hot: true,
         open: true,
+        historyApiFallback: true,
         proxy: { "/api/**": { target: 'http://localhost:5000', secure: false } }
     },
-    plugins: [
+    // plugins: [
         // new ReactRefreshWebpackPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.name': JSON.stringify('Vishwas'),
-        }),
-    ],
+        // new webpack.DefinePlugin({
+        //     'process.env.name': JSON.stringify('Vishwas'),
+        // }),
+    // ],
 }

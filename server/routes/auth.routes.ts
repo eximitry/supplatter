@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 const router = Router();
-const Identicon = require('identicon.js');
 
 router.post(
     '/register',
@@ -30,8 +29,7 @@ router.post(
             }
 
             const hashPassword = await bcrypt.hash(password, 12);
-            const generatedAvatar = await new Identicon(new Date().toISOString() + email).toString();
-            const user = new User({ email, password: hashPassword, avatar: generatedAvatar });
+            const user = new User({ email, password: hashPassword, avatar: 'there will be an avatar' });
             await user.save();
 
             await res.status(201).json({ message: 'Пользователь создан' });
@@ -76,9 +74,12 @@ router.post(
                 { expiresIn: '1h' }
             );
 
-            await res.json({ token, userId: user.id });
-
-
+            await res.json({
+                token, userInfo: {
+                    email: user.email,
+                    avatar: user.avatar,
+                }
+            });
         } catch (error) {
             console.log(error);
         }

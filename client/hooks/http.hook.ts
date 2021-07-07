@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback } from 'react';
 
-export const useHttp = () => {
+export const httpHook = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -32,4 +32,4 @@ export const useHttp = () => {
     const clearError = useCallback(() => setError(null), []);
 
     return { loading, request, error, clearError };
-}
+};

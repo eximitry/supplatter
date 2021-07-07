@@ -1,18 +1,19 @@
 import React from 'react';
 
-import Sidebar from '../../components/Sidebar';
+import SideBar from '../../components/SideBar';
+import NavBar from '../../components/NavBar';
 
 import { StyledContent, StyledMain, StyledMainWrapper } from './styles';
 
-const MainWrapper = () => {
+const MainWrapper = ({ children }: any) => {
+    console.log('MainWrapper');
+
     return (
         <StyledMainWrapper>
-            <Sidebar />
+            <SideBar />
             <StyledMain>
-                {/*<Header/>*/}
-                <StyledContent>
-                    Content
-                </StyledContent>
+                <NavBar />
+                <StyledContent>{children}</StyledContent>
             </StyledMain>
         </StyledMainWrapper>
     );
